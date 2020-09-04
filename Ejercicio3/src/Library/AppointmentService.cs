@@ -5,40 +5,38 @@ namespace Library
 {
     public class AppointmentService
     {
-            // se debe de separar el checkeo de la información al crear la cita
-            // por lo tanto el servicio de citas podría tener algúna otra función como el de cancelar
-            // Con esto se separa la responsabilidad citas con la de verificaciones
-        public static string CreateAppointment(string name, string id, string phoneNumber, DateTime date, string appoinmentPlace, string doctorName)
+
+        public static string CreateAppointment(Paciente paciente, DateTime date, Medico medico, Consultorio consultorio)
         {
             StringBuilder stringBuilder = new StringBuilder("Scheduling appointment...\n");
             Boolean isValid = true;
 
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(paciente.Nombre))
             {
                 stringBuilder.Append("Unable to schedule appointment, Name is required\n");
                 isValid = false;
             }
 
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(paciente.id))
             {
                 stringBuilder.Append("Unable to schedule appointment, id is required\n");
                 isValid = false;
             }
 
-            if (string.IsNullOrEmpty(phoneNumber))
+            if (string.IsNullOrEmpty(paciente.Telefono))
             {
                 stringBuilder.Append("Unable to schedule appointment, Phone number is required\n");
                 isValid = false;
             }
 
-            if (string.IsNullOrEmpty(appoinmentPlace))
+            if (string.IsNullOrEmpty(consultorio.Nombre))
             {
                 stringBuilder.Append("Unable to schedule appointment, Appoinment place is required\n");
                 isValid = false;
             }
 
             
-            if (string.IsNullOrEmpty(doctorName))
+            if (string.IsNullOrEmpty(medico.Nombre))
             {
                 stringBuilder.Append("Unable to schedule appointment, Doctor name is required\n");
                 isValid = false;
@@ -50,6 +48,7 @@ namespace Library
             }
 
             return stringBuilder.ToString();
+
         }
 
     }
